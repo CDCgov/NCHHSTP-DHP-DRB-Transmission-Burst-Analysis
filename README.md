@@ -1,25 +1,41 @@
-# CDCgov GitHub Organization Open Source Project Template
-
-**Template for clearance: This project serves as a template to aid projects in starting up and moving through clearance procedures. To start, create a new repository and implement the required [open practices](open_practices.md), train on and agree to adhere to the organization's [rules of behavior](rules_of_behavior.md), and [send a request through the create repo form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUNk43NzMwODJTRzA4NFpCUk1RRU83RTFNVi4u) using language from this template as a Guide.**
+# HIV Transmission Burst Analysis
 
 **General disclaimer** This repository was created for use by CDC programs to collaborate on public health related projects in support of the [CDC mission](https://www.cdc.gov/about/organization/mission.htm).  GitHub is not hosted by the CDC, but is a third party website used by CDC and its partners to share information and collaborate on software. CDC use of GitHub does not imply an endorsement of any one particular service, product, or enterprise. 
 
-## Access Request, Repo Creation Request
+# Overview
 
-* [CDC GitHub Open Project Request Form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUNk43NzMwODJTRzA4NFpCUk1RRU83RTFNVi4u) _[Requires a CDC Office365 login, if you do not have a CDC Office365 please ask a friend who does to submit the request on your behalf. If you're looking for access to the CDCEnt private organization, please use the [GitHub Enterprise Cloud Access Request form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUQjVJVDlKS1c0SlhQSUxLNVBaOEZCNUczVS4u).]_
+This analytical approach was developed to identify bursts of rapid HIV transmission across a clock-tree and characterize the contribution of bursts of rapid transmission to future transmission. The application of this approach is described in detail in a manuscript currently under review for publication.
 
-## Related documents
+## Outline
 
-* [Open Practices](open_practices.md)
-* [Rules of Behavior](rules_of_behavior.md)
-* [Thanks and Acknowledgements](thanks.md)
-* [Disclaimer](DISCLAIMER.md)
-* [Contribution Notice](CONTRIBUTING.md)
-* [Code of Conduct](code-of-conduct.md)
+The script infers a maximum likelihood phylogeny using FastTree2 and optimizes time-scaled phylogenies and infers transmission dates corresponding to dated internal nodes within each phylogeny using TreeTime. HIV transmission bursts are identified as three or more internal nodes descended from a single lineage within a defined detection period and are detected using tree-traversal implemented in ETE3. Lineages during the burst detection period are classified as burst-involved or non-burst-involved, where a lineage is considered involved in a transmission burst if it is the product of an inferred transmission event within a burst. Inferred transmission events, or internal nodes, dated during a defined follow-up period are identified as descended from lineages involved or not involved in transmission bursts during the burst detection period. 
 
-## Overview
+To estimate the relative contribution of transmission bursts to future transmission, divide the number of internal nodes during the follow-up period descended from bursts (A1) by the number of lineages active during the burst detection period involved in bursts (B1). Then, compare this ratio with the number of non-burst-descended inferred transmission events during the follow-up period (A2) divided by the number of non-burst-involved lineages during the burst detection period (B2). The relative contribution ratio is estimated as: 
+(Contribution of lineages involved in bursts to future transmission)/(Contribution of lineages not involved in bursts to future transmission)=(A_1/B_1)/(A_2/B_2)
 
-Describe the purpose of your project. Add additional sections as necessary to help collaborators and potential collaborators understand and use your project.
+To describe populations affected by transmission bursts throughout the tree, rather than bursts identified within a single, defined burst detection period, bursts may be identified using a sliding window of a defined width. Phylogenetic tips are then classified as either (i) a member or descendant of a transmission burst or (ii) not a member or descendant of a transmission burst. 
+
+## Required Dependencies
+
+* ete3: http://etetoolkit.org/download/
+* FastTree: http://www.microbesonline.org/fasttree/#Install
+* TreeTime: https://treetime.readthedocs.io/en/latest/installation.html
+
+## Defined Parameters
+
+* epochStart: Start year for fixed burst detection period (integer)
+* epochEnd: End year for fixed burst detection period (integer)
+* events: Number of inferred internal nodes descended from a single lineage during the burst detection required to identify a burst
+* upperDxLimit: End year for fixed follow-up period (integer)
+
+## Input File Requirements
+* Tab-delimited file
+* Unique sequence- or person-level identifier
+* Cleaned subtype B HIV sequence including reverse transcriptase region
+* Genotype sample date (YYYYMMDD)
+* Diagnosis date (YYYYMMDD)
+
+# Standard Notices
   
 ## Public Domain Standard Notice
 This repository constitutes a work of the United States Government and is not
@@ -70,6 +86,14 @@ CDC including this GitHub page may be subject to applicable federal law, includi
 This repository is not a source of government records, but is a copy to increase
 collaboration and collaborative potential. All government records will be
 published through the [CDC web site](http://www.cdc.gov).
+
+## Related documents
+* [Open Practices](open_practices.md)
+* [Rules of Behavior](rules_of_behavior.md)
+* [Thanks and Acknowledgements](thanks.md)
+* [Disclaimer](DISCLAIMER.md)
+* [Contribution Notice](CONTRIBUTING.md)
+* [Code of Conduct](code-of-conduct.md)
 
 ## Additional Standard Notices
 Please refer to [CDC's Template Repository](https://github.com/CDCgov/template) for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/main/CONTRIBUTING.md), [public domain notices and disclaimers](https://github.com/CDCgov/template/blob/main/DISCLAIMER.md), and [code of conduct](https://github.com/CDCgov/template/blob/main/code-of-conduct.md).
