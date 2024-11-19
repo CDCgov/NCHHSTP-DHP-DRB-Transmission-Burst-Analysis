@@ -29,11 +29,16 @@ To describe populations affected by transmission bursts throughout the tree, rat
 * upperDxLimit: End year for fixed follow-up period (integer)
 
 ## Input File Requirements
+
 * Tab-delimited file
 * Unique sequence- or person-level identifier
 * Cleaned subtype B HIV sequence including reverse transcriptase region
 * Genotype sample date (YYYYMMDD)
 * Diagnosis date (YYYYMMDD)
+
+## Analysis Script
+
+https://github.com/CDCgov/NCHHSTP-DHP-DRB-Transmission-Burst-Analysis/blob/main/src/runBurstAnalysis.py
 
 # Standard Notices
   
