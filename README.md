@@ -4,7 +4,7 @@
 
 # Overview
 
-This analytical approach was developed to identify bursts of rapid HIV transmission across a clock-tree and characterize the contribution of bursts of rapid transmission to future transmission. The application of this approach is described in detail in a manuscript currently under review for publication.
+This analytical approach was developed to identify bursts of rapid HIV transmission across a clock-tree and characterize the contribution of bursts of rapid transmission to future transmission. The application of this approach is described in detail in a manuscript titled 'Contribution of HIV transmission bursts to future HIV infections, United States' (DOI: 10.1097/QAD.0000000000004101).
 
 ## Outline
 
